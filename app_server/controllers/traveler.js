@@ -1,6 +1,15 @@
- // Render the travel page
+const fs = require('fs');
+
+// Render the travel page
 const travel = (req, res) => {
-    res.render('travel', { title: 'Travlr Getaways' });
+    const trips = JSON.parse(
+        fs.readFileSync('./data/trips.json', 'utf8')
+    );
+
+    res.render('travel', {
+        title: 'Travlr Getaways',
+        trips: trips
+    });
 };
 
 module.exports = {
